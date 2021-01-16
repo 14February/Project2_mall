@@ -1,0 +1,54 @@
+server:
+  port: 8083
+pagehelper:
+  helper-dialect: mysql
+
+logging:
+  level:
+    com.cskaoyan.mapper: debug
+
+storage:
+  path: d:\\picture\\
+  urlWx: http://localhost:8083/pic/
+  urlAdmin: http://localhost:8083/pic/
+
+
+
+mybatis:
+  type-handlers-package: com.cskaoyan.typeHandler
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+
+#    url: jdbc:mysql://localhost:3306/cskaoyanmall2?useUnicode=true&characterEncoding=utf-8
+
+    #    url: jdbc:mysql://localhost:3306/mydb?useUnicode=true&characterEncoding=utf-8
+
+#    username: root
+#    password: root
+
+    url: jdbc:mysql://localhost:3306/cskaoyanmall?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 961420
+
+#    url: jdbc:mysql://localhost:3306/mydb?useUnicode=true&characterEncoding=utf-8
+#    username: root
+#    password: 123456
+
+  web:
+    resources:
+      static-locations: file:D:/picture/
+  mvc:
+    static-path-pattern: /pic/**
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 20MB
+      max-request-size: 20MB
+
+
+
+
+

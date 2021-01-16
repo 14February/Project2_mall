@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cskaoyan.mapper.backstage.StatMapper">
+
+    <select id="selectByDay" resultType="com.cskaoyan.bean.backstage.stat.GoodsBean">
+        select  count(g.order_id) as orders,sum(g.number) as products,sum(o.order_price) as amount,
+        DATE_FORMAT(o.update_time ,'%Y-%m-%d') as 'day'
+        from cskaoyanmall_order_goods g inner join cskaoyanmall_order o on g.order_id=o.id
+        where o.order_status not in (101,102,103) group by DATE(day)
+    </select>
+
+    <select id="selectOrderByDay" resultType="com.cskaoyan.bean.backstage.stat.OrderBean">
+        select  count(g.order_id) as orders,sum(o.order_price) as amount,count(o.user_id) as customers,
+        DATE_FORMAT(o.update_time ,'%Y-%m-%d') as 'day'
+        from cskaoyanmall_order_goods g inner join cskaoyanmall_order o on g.order_id=o.id
+        where o.order_status=201 group by DATE(day)
+    </select>
+</mapper>
